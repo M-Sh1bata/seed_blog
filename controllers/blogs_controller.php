@@ -1,12 +1,26 @@
 <?php 
-	echo 'blogs_controllerが呼ばれました';
+	echo 'blogs_controllerが呼ばれました<br>';
 
 		//モデルの呼び出し
 	require('models/blog.php');
  	
 	//コントローラーのクラスをインスタンス化
 	$controller = new BlogsController();
-	$controller->index();
+	//$controller->index();
+	//アクション名によって呼び出すメソッドを変える
+	switch ($action) {
+		case 'index':
+			$controller->index();
+			break;
+		case 'add':
+			$controller->add();
+			break;
+
+		default:
+			# code...
+			break;
+	}
+
 
  	class BlogsController{
  		function index(){
@@ -15,6 +29,10 @@
  			//モデルを呼び出す
  			$blog = new Blog();
  			$blog->index();
+ 		}
+
+ 		function add(){
+ 			echo 'add()が呼び出されました!<br>';
  		}
  	}
 
