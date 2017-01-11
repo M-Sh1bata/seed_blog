@@ -1,6 +1,6 @@
 <?php
-echo 'routes.phpを通りました';
-echo '<br>';
+//echo 'routes.phpを通りました';
+//echo '<br>';
 
 
 //１．GETパラメーターを取得
@@ -9,7 +9,7 @@ echo '<br>';
 $params = explode('/', $_GET['url']);
 
 //２．パラメータの分解（リソース名、アクション名、オプションを取得）
-$resouce=$params[0];
+$resource=$params[0];
 $action = $params[1];
 $id = 0;
 
@@ -21,7 +21,7 @@ if (isset($params[2])) {
 
 //3.コントローラの呼び出し
 
-	require('controllers/'.$resouce.'_controller.php');
+	require('controllers/'.$resource.'_controller.php');
 
 
 // foreach ($params as $param) {
