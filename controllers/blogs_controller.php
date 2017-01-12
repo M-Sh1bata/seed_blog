@@ -36,6 +36,8 @@
 
  		function add(){
  			//echo 'add()が呼び出されました!<br>';
+ 			$action = 'add';
+ 			require('views/layout/application.php');
  		}
  	}
 
