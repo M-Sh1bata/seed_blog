@@ -173,5 +173,30 @@
 			 return $results;
 	
 		}
+
+		function delete($id){
+				$sql = sprintf("UPDATE `blogs` SET `delete_flag` = 1 WHERE `blogs`.`id` = %d;",
+				$id
+				);
+
+
+				// $sql = sprintf("INSERT INTO `blogs` (`id`, `title`, `body`, `delete_flag`, `created`, `modified`) VALUES (NULL, '%s', '%s', '0', NOW(), CURRENT_TIMESTAMP)",
+				// $blog_data['title'],
+				// $blog_data['body']
+				// );
+
+
+			// $sql = sprintf('SELECT * FROM `blogs` WHERE `delete_flag`=0 AND `id`=%d',
+   //      	mysqli_real_escape_string($this->dbconnect, $id)
+   //      	);
+
+			//SQLの実行
+			$results = mysqli_query($this->dbconnect, $sql) or die(my_sqli_error($this->dbconnect));
+
+
+			//取得結果を残す
+			 return $results;
+
+		}
 	}
  ?>

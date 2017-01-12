@@ -34,6 +34,10 @@
 			$controller->update($_POST,$id);
 			break;
 
+		case 'delete':
+			$controller->delete($id);
+			break;
+
 		default:
 			# code...
 			break;
@@ -87,6 +91,14 @@
  			$blog = new Blog();
  			$updating=$blog->update($update_data,$id);
  			$action = 'update';
+ 			header('Location: /seed_blog/blogs/index');
+
+ 		}
+
+ 		function delete($id){
+ 			$blog = new Blog();
+ 			$deleting=$blog->delete($id);
+ 			$action = 'delete';
  			header('Location: /seed_blog/blogs/index');
 
  		}
