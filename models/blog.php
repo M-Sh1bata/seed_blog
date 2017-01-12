@@ -47,8 +47,131 @@
 			 // 	echo $created=htmlspecialchars($blogs['created']);
 			 // 	echo $modified=htmlspecialchars($blogs['modified']);
 			 // }
+		}
+		function create($blog_data){
+
+			$sql = sprintf("INSERT INTO `blogs` (`id`, `title`, `body`, `delete_flag`, `created`, `modified`) VALUES (NULL, '%s', '%s', '0', NOW(), CURRENT_TIMESTAMP)",
+				$blog_data['title'],
+				$blog_data['body']
+				// mysqli_real_escape_string($this->dbconnect, $blog_data['title']),
+				// mysqli_real_escape_string($this->dbconnect, $blog_data['body'])
+				);
 
 
+			// $sql = sprintf('SELECT * FROM `blogs` WHERE `delete_flag`=0 AND `id`=%d',
+   //      	mysqli_real_escape_string($this->dbconnect, $id)
+   //      	);
+
+			//SQLの実行
+			$results = mysqli_query($this->dbconnect, $sql) or die(my_sqli_error($this->dbconnect));
+
+
+			//取得結果を残す
+			 return $results;
+		}
+
+		function show(){
+
+			
+			$params = explode('/', $_GET['url']);
+
+			//２．パラメータの分解（リソース名、アクション名、オプションを取得）
+			$resource=$params[0];
+			$action = $params[1];
+			$id = 0;
+
+			if (isset($params[2])) {
+				$id = $params[2];
+			
+
+
+
+			$sql = sprintf('SELECT * FROM `blogs` WHERE `delete_flag`=0 AND `id`=%d',
+        	$id
+        	);
+
+			//SQLの実行
+			$results = mysqli_query($this->dbconnect, $sql) or die(my_sqli_error($this->dbconnect));
+
+			 //実行結果を取得し、配列に格納
+			 $blogs = mysqli_fetch_assoc($results);
+
+			 // $rtn = array();
+			 // while($result = mysqli_fetch_assoc($results)){
+			 // 	$rtn[]=$result;
+
+			 //取得結果を残す
+			 return $blogs;
+			 
+			 }
+			 else{
+			 	header('Location:/seed_blog/blogs/index');
+			 }
+		}
+
+		function edit(){
+			$params = explode('/', $_GET['url']);
+
+			//２．パラメータの分解（リソース名、アクション名、オプションを取得）
+			$resource=$params[0];
+			$action = $params[1];
+			$id = 0;
+
+			if (isset($params[2])) {
+				$id = $params[2];
+			
+
+
+
+			$sql = sprintf('SELECT * FROM `blogs` WHERE `delete_flag`=0 AND `id`=%d',
+        	$id
+        	);
+
+			//SQLの実行
+			$results = mysqli_query($this->dbconnect, $sql) or die(my_sqli_error($this->dbconnect));
+
+			 //実行結果を取得し、配列に格納
+			 $blogs = mysqli_fetch_assoc($results);
+
+			 // $rtn = array();
+			 // while($result = mysqli_fetch_assoc($results)){
+			 // 	$rtn[]=$result;
+
+			 //取得結果を残す
+			 return $blogs;
+			 
+			 }
+			 else{
+			 	header('Location:/seed_blog/blogs/index');
+			 }
+		}
+
+
+		function update($update_data,$id){
+				$sql = sprintf("UPDATE `blogs` SET `title` = '%s', `body` = '%s' WHERE `blogs`.`id` = %d;",
+				$update_data['title'],
+				$update_data['body'],
+				$id
+				);
+
+
+				// $sql = sprintf("INSERT INTO `blogs` (`id`, `title`, `body`, `delete_flag`, `created`, `modified`) VALUES (NULL, '%s', '%s', '0', NOW(), CURRENT_TIMESTAMP)",
+				// $blog_data['title'],
+				// $blog_data['body']
+				// );
+
+
+			// $sql = sprintf('SELECT * FROM `blogs` WHERE `delete_flag`=0 AND `id`=%d',
+   //      	mysqli_real_escape_string($this->dbconnect, $id)
+   //      	);
+
+			//SQLの実行
+			$results = mysqli_query($this->dbconnect, $sql) or die(my_sqli_error($this->dbconnect));
+
+
+			//取得結果を残す
+			 return $results;
+	
 		}
 	}
  ?>

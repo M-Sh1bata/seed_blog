@@ -1,3 +1,11 @@
+
+<?php 
+    $adjust_string = '';
+
+    if (($action == 'show')||($action=='edit')||($action == 'delete')) {
+    $adjust_string = '../';
+    }
+ ?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -8,11 +16,11 @@
     <title>Seed Blog</title>
 
     <!-- Bootstrap -->
-    <link href="../webroot/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="../webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../webroot/assets/css/form.css" rel="stylesheet">
-    <link href="../webroot/assets/css/timeline.css" rel="stylesheet">
-    <link href="../webroot/assets/css/main.css" rel="stylesheet">
+    <link href="<?php echo $adjust_string; ?>../webroot/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $adjust_string; ?>../webroot/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<?php echo $adjust_string; ?>../webroot/assets/css/form.css" rel="stylesheet">
+    <link href="<?php echo $adjust_string; ?>../webroot/assets/css/timeline.css" rel="stylesheet">
+    <link href="<?php echo $adjust_string; ?>../webroot/assets/css/main.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +40,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="/seed_blog/blogs/index">
                 <span class="strong-title"><i class="fa fa-pencil-square-o"></i> Seed Blog</span>
               </a>
           </div>
@@ -55,6 +63,6 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<?php echo $adjust_string; ?>../webroot/assets/js/bootstrap.min.js"></script>
   </body>
 </html>
